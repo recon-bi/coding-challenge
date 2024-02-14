@@ -12,6 +12,10 @@ You will need to run the docker commands before you start the back end:
 - docker pull mongo
 - docker run --name docker-mongo -p 27017:27017 -d mongo:latest
 
+This is to run an instance of MongoDB
+
+When you start the backend, it will reach out to the Docker container on localhost:27017 and run a brief setup to initialize the db with mock data
+
 
 ## Start the app
 
