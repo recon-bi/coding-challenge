@@ -1,0 +1,98 @@
+@import 
+	url('https 
+		&://fonts 
+			&.googleapis 
+				&.com/css?family=Roboto'); 
+					@media 
+						print 
+							a[href]: after {
+    content: none !important 
+}
+@media print,screen 
+	@page {
+    size: 7in 11in 
+	margin-top: 10mm 
+img 
+	border: 0px 
+.print-background-color 
+	background-color: #005d8d !important 
+.print-font 
+	font-family: 'Roboto', Calibri, Candara, Segoe, Segoe UI, Optima, Arial, sans-serif 
+.print-container 
+	font-family: 'Roboto', Calibri, Candara, Segoe, Segoe UI, Optima, Arial, sans-serif 
+	width: 595px 
+	background-color: white !important 
+	position: relative 
+	page-break-before: always 
+	page-break-after: always 
+	color: #363636 
+	-webkit-print-color-adjust: exact 
+.print-cover-page 
+	font-family: 'Roboto', Calibri, Candara, Segoe, Segoe UI, Optima, Arial, sans-serif 
+	margin-bottom: 7px 
+	margin: 7px 
+	position: relative 
+	font-size: 1.2em 
+	color: #0c6b99 !important 
+	z-index: 1 
+	-webkit-print-color-adjust: exact 
+.print-bottom-right 
+	font-family: 'Roboto', Calibri, Candara, Segoe, Segoe UI, Optima, Arial, sans-serif 
+	position: absolute 
+	bottom: 0 
+	margin-bottom: 7px 
+	margin: 7px 
+	right: 0 
+	z-index: 10 
+	color: #0c6b99 !important 
+	-webkit-print-color-adjust: exact 
+.print-footer 
+	font-family: 'Roboto', Calibri, Candara, Segoe, Segoe UI, Optima, Arial, sans-serif 
+	position: absolute 
+	bottom: 20px 
+	margin-bottom: 7px 
+	margin-left: 0px 
+	background-color: #0c6b99 !important 
+	color: #ffffff !important 
+	width: 100% 
+	font-weight: bold 
+.print-header 
+	font-family: 'Roboto', Calibri, Candara, Segoe, Segoe UI, Optima, Arial, sans-serif 
+	background-color: #0c6b99 !important 
+	color: #ffffff !important 
+	border: 0px 
+	width: 100% 
+	-webkit-print-color-adjust: exact 
+	div 
+		font-family: 'Roboto', Calibri, Candara, Segoe, Segoe UI, Optima, Arial, sans-serif 
+		background-color: #0c6b99 !important 
+		color: #ffffff !important 
+		-webkit-print-color-adjust: exact 
+.print-header-title 
+	font-family: 'Roboto', Calibri, Candara, Segoe, Segoe UI, Optima, Arial, sans-serif 
+	color: #ffffff !important 
+	font-size: 18pt 
+	font-weight: bold 
+	float: left 
+	padding-left: 50px 
+	padding-top: 15px 
+.print-table-header 
+	font-family: 'Roboto', Calibri, Candara, Segoe, Segoe UI, Optima, Arial, sans-serif 
+	background-color: #0c6b99 !important 
+	color: #ffffff !important 
+	padding: 5px 
+	font-weight: bold 
+	-webkit-print-color-adjust: exact 
+.print-thin-borders 
+	border-left: 1px solid #ccc 
+	border-right: 1px solid #ccc 
+	border-top: 1px solid #ccc 
+	tbody 
+		tr 
+			border-bottom: 1px solid #ccc 
+		td 
+			font-family: 'Roboto', Calibri, Candara, Segoe, Segoe UI, Optima, Arial, sans-serif 
+			padding: 2px 
+			padding-left: 5px 
+			color: #363636 
+			verticle-align: top 

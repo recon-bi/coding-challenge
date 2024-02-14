@@ -1,0 +1,22 @@
+.card {
+  padding: 2em;
+}
+
+.read-the-docs {
+  color: #888;
+}
+
+.swal2-container {
+  z-index: 3001 !important;
+}
+.red {
+  color: red;
+}
+
+.darkred {
+  color: darkred;
+}
+
+.green {
+  color: green;
+}
