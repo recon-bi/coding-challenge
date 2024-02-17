@@ -2,7 +2,7 @@
 /// <reference types="vite/client" />
 
 import { defineConfig } from 'vite';
-import react from '@vitejs/plugin-react'
+import react from '@vitejs/plugin-react';
 import viteTsConfigPaths from 'vite-tsconfig-paths';
 import path from 'path';
 import { fileURLToPath } from 'url';
@@ -47,7 +47,7 @@ export default defineConfig({
       model: path.resolve(__dirname, './src/model'),
       NotUsed: path.resolve(__dirname, './src/NotUsed'),
       types: path.resolve(__dirname, './src/types'),
-      'ui': path.resolve(__dirname, './src/ui'),
+      ui: path.resolve(__dirname, './src/ui'),
       routes: path.resolve(__dirname, './src/routes'),
     },
   },
@@ -55,8 +55,7 @@ export default defineConfig({
   test: {
     globals: true,
     environment: 'jsdom',
-    setupFiles: "src/setupTests.ts",
-    css: true
-
-  }
-})
+    setupFiles: 'src/setupTests.ts',
+    css: true,
+  },
+});

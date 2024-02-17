@@ -1,4 +1,4 @@
-import DatePicker from 'common/DatePicker';
+import CommonDatePicker from 'common/DatePicker';
 import { Box } from '@mui/material';
 import React from 'react';
 import dayjs from 'dayjs';
@@ -44,14 +44,14 @@ function DateRangePicker({ onChange, firstDate, lastDate }: Props) {
     <Box>
       <Box display="flex" justifyContent="space-between">
         <Box minWidth={150}>
-          <DatePicker
+          <CommonDatePicker
             label="Start Date"
             initialValue={firstDate}
             onChange={(newValue: any) => handleChange(newValue, 'startDate')}
           />
         </Box>
         <Box ml={1} minWidth={150}>
-          <DatePicker
+          <CommonDatePicker
             label="End Date"
             initialValue={lastDate}
             onChange={(newValue: any) => handleChange(newValue, 'endDate')}
