@@ -10,6 +10,7 @@ import BookingsModel from 'models/bookings.model';
 import dayjs from 'dayjs';
 import Swal from 'sweetalert2';
 import { authContext } from 'context/AuthContext';
+import { getRandomArbitrary } from 'lib/utils/numbers';
 
 interface Props {
   selectedItem: any;
@@ -22,6 +23,8 @@ function BookingForm({ showModal, selectedItem, selections, onClose }: Props) {
   const [open, setOpen] = React.useState(false);
   const [customer, setCustomer] = React.useState({ customerName: '', phone: '', email: '' });
   const { user } = React.useContext(authContext);
+
+  const randomImageNo = Math.floor(getRandomArbitrary(0, 14));
 
   const handleBook = () => {
     const modelInstance = BookingsModel.getInstance();
@@ -60,15 +63,17 @@ function BookingForm({ showModal, selectedItem, selections, onClose }: Props) {
   return (
     <CommonModal showModal={open} onModalClose={onClose} cssOverrides={{ width: 600 }}>
       <MDBox>
-        <DataCard title="Selected Hotel">
-          <MDBox display="flex" mt={2}>
-            <MDBox>
-              <MDTypography variant="h5">{selectedItem && selectedItem.name}</MDTypography>
-            </MDBox>
+        <DataCard title="">
+          <MDBox>
+            <MDTypography variant="h5">{selectedItem && selectedItem.name}</MDTypography>
+          </MDBox>
+
+          <MDBox>
+            <img src={`/images/hotel_pics/hotel${randomImageNo}.webp`} alt="Random Hotel Image" width={425} />
           </MDBox>
 
           <MDBox display="flex" mt={2}>
-            <MDBox>
+            <MDBox width={115}>
               <MDTypography fontSize="1rem" fontWeight="bold">
                 Check in date:
               </MDTypography>
@@ -78,7 +83,7 @@ function BookingForm({ showModal, selectedItem, selections, onClose }: Props) {
             </MDBox>
           </MDBox>
 
-          <MDBox display="flex" mt={2}>
+          <MDBox display="flex" mt={1}>
             <MDBox>
               <MDTypography fontSize="1rem" fontWeight="bold">
                 Check out date:
@@ -89,8 +94,8 @@ function BookingForm({ showModal, selectedItem, selections, onClose }: Props) {
             </MDBox>
           </MDBox>
 
-          <MDBox display="flex" mt={2}>
-            <MDBox>
+          <MDBox display="flex" mt={3}>
+            <MDBox width={115}>
               <MDTypography fontSize="1rem" fontWeight="bold">
                 Your name:
               </MDTypography>
@@ -100,8 +105,8 @@ function BookingForm({ showModal, selectedItem, selections, onClose }: Props) {
             </MDBox>
           </MDBox>
 
-          <MDBox display="flex" mt={2}>
-            <MDBox>
+          <MDBox display="flex" mt={1}>
+            <MDBox width={115}>
               <MDTypography fontSize="1rem" fontWeight="bold">
                 Phone:
               </MDTypography>
@@ -111,8 +116,8 @@ function BookingForm({ showModal, selectedItem, selections, onClose }: Props) {
             </MDBox>
           </MDBox>
 
-          <MDBox display="flex" mt={2}>
-            <MDBox>
+          <MDBox display="flex" mt={1}>
+            <MDBox width={115}>
               <MDTypography fontSize="1rem" fontWeight="bold">
                 Email:
               </MDTypography>

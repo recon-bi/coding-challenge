@@ -15,7 +15,6 @@ function CitySearch({ onSelected, initialState = [] }: Props) {
   const [options, setOptions] = React.useState(initialState);
 
   const handleSelected = (selectedValue: AutocompleteOptionType | null) => {
-    console.log('HANDLE SELECTED');
     if (selectedValue) onSelected('city', selectedValue.label);
   };
 
