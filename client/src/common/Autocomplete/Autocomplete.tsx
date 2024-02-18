@@ -31,7 +31,7 @@ function CommonAutocomplete({
   ...rest
 }: Props) {
   const [sortedOptions, setSortedOptions] = React.useState<AutocompleteOptionType[]>([]);
-  const [inputValue, setInputValue] = React.useState('');
+  const [inputValue, setInputValue] = React.useState<any>('');
 
   const handleInputChange = (
     e: any,
@@ -40,11 +40,14 @@ function CommonAutocomplete({
   ) => {
     if (reason === 'clear') {
       console.log('Cleared for a reason');
+      setInputValue('');
     }
+    setInputValue(newValue);
     if (onChange) onChange(newValue);
   };
 
   const handleChange = (e: any, newValue: AutocompleteOptionType | null, reason: AutocompleteChangeReason) => {
+    console.log(e, newValue, reason);
     if (onSelected) onSelected(newValue);
   };
 
@@ -58,6 +61,10 @@ function CommonAutocomplete({
       );
     }
   }, [options]);
+
+  React.useEffect(() => {
+    if (selectedValue) setInputValue(selectedValue);
+  }, [selectedValue]);
 
   return (
     <MDBox spacing={2} sx={{ maxWidth: width }} bgColor="white" borderRadius="10px">
@@ -77,10 +84,10 @@ function CommonAutocomplete({
             InputProps={{
               ...params.InputProps,
               type: 'search',
-              sx: { backgroundColor: 'white', height: 45, maxWidth: width, lineHeight: 0 },
+              sx: { backgroundColor: 'white', height: 45, maxWidth: width, lineHeight: 0, pt: -1 },
             }}
             name={name}
-            value={selectedValue}
+            // value={selectedValue}
           />
         )}
         {...rest}

@@ -13,16 +13,16 @@ Coded by www.creative-tim.com
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 */
 
-import { ReactNode, useEffect } from "react";
+import { ReactNode, useEffect } from 'react';
 
 // react-router-dom components
-import { useLocation } from "react-router-dom";
+import { useLocation } from 'react-router-dom';
 
 // Material Dashboard 2 PRO React TS components
-import MDBox from "ui/MDBox";
+import MDBox from 'ui/MDBox';
 
 // Material Dashboard 2 PRO React context
-import { useMaterialUIController, setLayout } from 'context/index';
+import { useMaterialUIController, setLayout } from 'context/ThemeContext';
 
 function DashboardLayout({ children }: { children: ReactNode }): JSX.Element {
   const [controller, dispatch] = useMaterialUIController();
@@ -30,18 +30,18 @@ function DashboardLayout({ children }: { children: ReactNode }): JSX.Element {
   const { pathname } = useLocation();
 
   useEffect(() => {
-    setLayout(dispatch, "dashboard");
+    setLayout(dispatch, 'dashboard');
   }, [pathname]);
 
   return (
     <MDBox
       sx={({ breakpoints, transitions, functions: { pxToRem } }) => ({
         p: 3,
-        position: "relative",
+        position: 'relative',
 
-        [breakpoints.up("lg")]: {
+        [breakpoints.up('lg')]: {
           marginLeft: miniSidenav ? pxToRem(120) : pxToRem(274),
-          transition: transitions.create(["margin-left", "margin-right"], {
+          transition: transitions.create(['margin-left', 'margin-right'], {
             easing: transitions.easing.easeInOut,
             duration: transitions.duration.standard,
           }),

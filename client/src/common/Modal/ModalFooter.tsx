@@ -1,5 +1,5 @@
 import MDBox from 'ui/MDBox';
-import { useMaterialUIController } from 'context/index';
+import { useMaterialUIController } from 'context/ThemeContext';
 
 interface Props {
   children: any;

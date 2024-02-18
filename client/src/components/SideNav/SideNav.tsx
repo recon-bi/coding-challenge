@@ -22,7 +22,7 @@ import SidenavRoot from 'components/SideNav/SidenavRoot';
 import sidenavLogoLabel from 'components/SideNav/styles/sidenav';
 
 // Material Dashboard 2 PRO React context
-import { useMaterialUIController, setMiniSidenav, setTransparentSidenav, setWhiteSidenav } from 'context/index';
+import { useMaterialUIController, setMiniSidenav, setTransparentSidenav, setWhiteSidenav } from 'context/ThemeContext';
 import { authContext } from 'context/AuthContext';
 import icon from '../../favicon-32x32.png';
 

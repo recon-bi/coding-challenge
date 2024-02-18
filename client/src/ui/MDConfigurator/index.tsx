@@ -1,7 +1,7 @@
 import Divider from '@mui/material/Divider';
 import Icon from '@mui/material/Icon';
 import Switch from '@mui/material/Switch';
-import { setDarkMode, setOpenConfigurator, useMaterialUIController } from 'context/index';
+import { setDarkMode, setOpenConfigurator, useMaterialUIController } from 'context/ThemeContext';
 // import { authContext } from 'context/AuthContext';
 import MDBox from 'ui/MDBox';
 import ConfiguratorRoot from 'ui/MDConfigurator/ConfiguratorRoot';
@@ -71,7 +71,6 @@ function Configurator(): JSX.Element {
             </MDButton>
           </MDBox>
         </MDBox>
-
       </MDBox>
     </ConfiguratorRoot>
   );

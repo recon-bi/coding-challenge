@@ -14,16 +14,16 @@ Coded by www.creative-tim.com
 */
 
 // react-quill components
-import ReactQuill from "react-quill";
+import ReactQuill from 'react-quill';
 
 // react-quill styles
-import "react-quill/dist/quill.snow.css";
+import 'react-quill/dist/quill.snow.css';
 
 // Custom styles for the MDEditor
-import MDEditorRoot from "ui/MDEditor/MDEditorRoot";
+import MDEditorRoot from 'ui/MDEditor/MDEditorRoot';
 
 // Material Dashboard 2 PRO React context
-import { useMaterialUIController } from 'context/index';
+import { useMaterialUIController } from 'context/ThemeContext';
 
 // declaring types for the MDEditor
 interface Props {

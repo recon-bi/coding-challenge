@@ -5,7 +5,7 @@ import { ThemeProvider } from '@mui/material/styles';
 import Configurator from 'ui/MDConfigurator';
 import themeDark from 'assets/theme-dark';
 import theme from 'assets/theme';
-import { setMiniSidenav, useMaterialUIController } from 'context/index';
+import { setMiniSidenav, useMaterialUIController } from 'context/ThemeContext';
 import routes from 'routes';
 import Sidenav from 'components/SideNav';
 import { authContext } from 'context/AuthContext';
@@ -139,12 +139,12 @@ export default function App() {
       <Routes>
         <Route path="/auth/*" element={<AuthControls />} />
         {<Route path="/" element={<Dashboard />} />}
-        { getRoutes(routes)} 
-    
+        {getRoutes(routes)}
+
         {user && !user.ChallengeName ? (
           <>
             {getRoutes(routes)}
-            
+
             <Route
               path="/"
               element={
@@ -165,10 +165,8 @@ export default function App() {
             />
           </>
         ) : (
-            
           <Route path="*" element={<AuthControls />} />
         )}
-        
       </Routes>
     </ThemeProvider>
   );

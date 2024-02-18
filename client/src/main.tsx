@@ -1,4 +1,4 @@
-import { MaterialUIControllerProvider } from 'context/index';
+import { MaterialUIControllerProvider } from 'context/ThemeContext';
 import { AuthProvider } from 'context/AuthContext';
 import ReactDOM from 'react-dom/client';
 import { Provider } from 'react-redux';
@@ -19,4 +19,3 @@ root.render(
     </AuthProvider>
   </Provider>,
 );
-

@@ -10,18 +10,15 @@ import Breadcrumbs from 'ui/MDBreadcrumbs';
 import NotificationItem from 'ui/MDNotificationItem';
 // import { authContext } from 'context/AuthContext';
 
-import {
-  navbar,
-  navbarContainer,
-  navbarRow,
-  navbarIconButton,
-  navbarMobileMenu,
-} from 'layouts/Navbar/styles';
-
+import { navbar, navbarContainer, navbarRow, navbarIconButton, navbarMobileMenu } from 'layouts/Navbar/styles';
 
 // Material Dashboard 2 PRO React context
-import { useMaterialUIController, setTransparentNavbar, setMiniSidenav, setOpenConfigurator } from 'context/index';
-
+import {
+  useMaterialUIController,
+  setTransparentNavbar,
+  setMiniSidenav,
+  setOpenConfigurator,
+} from 'context/ThemeContext';
 
 // Declaring prop types for DashboardNavbar
 interface Props {

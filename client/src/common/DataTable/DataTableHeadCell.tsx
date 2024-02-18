@@ -1,7 +1,7 @@
 import { MouseEventHandler, ReactNode } from 'react';
 // import { Theme } from "@mui/material/styles";
 import MDBox from 'ui/MDBox';
-import { useMaterialUIController } from 'context/index';
+import { useMaterialUIController } from 'context/ThemeContext';
 import Icon from '@mui/material/Icon';
 
 // Declaring props types for DataTableHeadCell

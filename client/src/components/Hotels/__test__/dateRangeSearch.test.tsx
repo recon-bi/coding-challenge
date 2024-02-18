@@ -4,7 +4,7 @@ import userEvent from '@testing-library/user-event';
 // import { ReactNode } from 'react';
 import { unmountComponentAtNode } from 'react-dom';
 import { afterEach, beforeEach, describe, expect, it } from 'vitest';
-import HotelSearch from '../HotelSearch'; // Adjust the import path as necessary
+import DateRangeSearch from '../../HotelSearch/DateRangeSearch'; // Adjust the import path as necessary
 
 let container: any = null;
 
@@ -19,12 +19,12 @@ afterEach(() => {
   container = null;
 });
 
-describe('HotelSearch Component', () => {
+describe('DateRangeSearch Component', () => {
   it('renders without crashing', () => {
     const onChangeMock = vi.fn();
 
     act(() => {
-      render(<HotelSearch onChange={onChangeMock} />, container);
+      render(<DateRangeSearch onChange={onChangeMock} />, container);
     });
 
     expect(container).toBeTruthy();
@@ -33,11 +33,11 @@ describe('HotelSearch Component', () => {
   it('calls onChange prop with the correct params when start date changes', () => {
     const onChangeMock = vi.fn();
 
-    render(<HotelSearch onChange={onChangeMock} />, container);
+    render(<DateRangeSearch onChange={onChangeMock} />, container);
 
     expect(onChangeMock).not.toHaveBeenCalled();
 
-    const startDateInput = screen.getByTestId('HotelSearch_dateRangePickerStart');
+    const startDateInput = screen.getByTestId('DateRangeSearch_dateRangePickerStart');
     userEvent.type(startDateInput, '01/01/2020', { delay: 1 });
     fireEvent.change(startDateInput, { target: { value: '01/01/2020' } });
 
@@ -50,11 +50,11 @@ describe('HotelSearch Component', () => {
   it('calls onChange prop with the correct params when end date changes', () => {
     const onChangeMock = vi.fn();
 
-    render(<HotelSearch onChange={onChangeMock} />, container);
+    render(<DateRangeSearch onChange={onChangeMock} />, container);
 
     expect(onChangeMock).not.toHaveBeenCalled();
 
-    const endDateInput = screen.getByTestId('HotelSearch_dateRangePickerEnd');
+    const endDateInput = screen.getByTestId('DateRangeSearch_dateRangePickerEnd');
     userEvent.type(endDateInput, '01/01/2020', { delay: 1 });
     fireEvent.change(endDateInput, { target: { value: '01/01/2020' } });
 

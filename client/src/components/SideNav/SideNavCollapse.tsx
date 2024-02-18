@@ -35,7 +35,7 @@ import {
 } from 'components/SideNav/styles/sidenavCollapse';
 
 // Material Dashboard 2 PRO React context
-import { useMaterialUIController } from 'context/index';
+import { useMaterialUIController } from 'context/ThemeContext';
 
 // Declaring props types for SidenavCollapse
 interface Props {

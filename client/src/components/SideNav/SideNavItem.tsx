@@ -29,7 +29,7 @@ import MDBox from 'ui/MDBox';
 import { item, itemContent, itemArrow } from 'components/SideNav/styles/sidenavItem';
 
 // Material Dashboard 2 PRO React TS contexts
-import { useMaterialUIController } from 'context/index';
+import { useMaterialUIController } from 'context/ThemeContext';
 
 // Declaring props types for SidenavCollapse
 interface Props {

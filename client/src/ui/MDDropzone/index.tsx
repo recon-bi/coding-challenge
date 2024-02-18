@@ -13,22 +13,22 @@ Coded by www.creative-tim.com
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 */
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef } from 'react';
 
 // Dropzone components
-import Dropzone from "dropzone";
+import Dropzone from 'dropzone';
 
 // Dropzone styles
-import "dropzone/dist/dropzone.css";
+import 'dropzone/dist/dropzone.css';
 
 // Material Dashboard 2 PRO React TS components
-import MDBox from "ui/MDBox";
+import MDBox from 'ui/MDBox';
 
 // Custom styles for the MDDropzone
-import MDDropzoneRoot from "ui/MDDropzone/MDDropzoneRoot";
+import MDDropzoneRoot from 'ui/MDDropzone/MDDropzoneRoot';
 
 // Material Dashboard 2 PRO React context
-import { useMaterialUIController } from 'context/index';
+import { useMaterialUIController } from 'context/ThemeContext';
 
 // Declaring props types for MDDropzone
 interface Props {
@@ -62,12 +62,7 @@ function MDDropzone({ options }: Props): JSX.Element {
   }, [options]);
 
   return (
-    <MDDropzoneRoot
-      action="/file-upload"
-      ref={dropzoneRef}
-      className="form-control dropzone"
-      ownerState={{ darkMode }}
-    >
+    <MDDropzoneRoot action="/file-upload" ref={dropzoneRef} className="form-control dropzone" ownerState={{ darkMode }}>
       <MDBox className="fallback" bgColor="transparent">
         <input name="file" type="file" multiple />
       </MDBox>

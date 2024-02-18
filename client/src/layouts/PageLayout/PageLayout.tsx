@@ -13,20 +13,20 @@ Coded by www.creative-tim.com
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 */
 
-import { useEffect, ReactNode } from "react";
+import { useEffect, ReactNode } from 'react';
 
 // react-router-dom components
-import { useLocation } from "react-router-dom";
+import { useLocation } from 'react-router-dom';
 
 // Material Dashboard 2 PRO React TS components
-import MDBox from "ui/MDBox";
+import MDBox from 'ui/MDBox';
 
 // Material Dashboard 2 PRO React context
-import { useMaterialUIController, setLayout } from 'context/index';
+import { useMaterialUIController, setLayout } from 'context/ThemeContext';
 
 // Declaring props types for PageLayout
 interface Props {
-  background?: "white" | "light" | "default" | "#333";
+  background?: 'white' | 'light' | 'default' | '#333';
   children: ReactNode;
 }
 
@@ -35,17 +35,11 @@ function PageLayout({ background, children }: Props): JSX.Element {
   const { pathname } = useLocation();
 
   useEffect(() => {
-    setLayout(dispatch, "page");
+    setLayout(dispatch, 'page');
   }, [pathname]);
 
   return (
-    <MDBox
-      width="100vw"
-      height="100%"
-      minHeight="100vh"
-      bgColor={background}
-      sx={{ overflowX: "hidden" }}
-    >
+    <MDBox width="100vw" height="100%" minHeight="100vh" bgColor={background} sx={{ overflowX: 'hidden' }}>
       {children}
     </MDBox>
   );
@@ -53,7 +47,7 @@ function PageLayout({ background, children }: Props): JSX.Element {
 
 // Declaring default props for PageLayout
 PageLayout.defaultProps = {
-  background: "default",
+  background: 'default',
 };
 
 export default PageLayout;

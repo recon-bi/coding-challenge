@@ -1,4 +1,4 @@
-import { useMaterialUIController } from 'context/index';
+import { useMaterialUIController } from 'context/ThemeContext';
 
 export default () => {
   const [controller] = useMaterialUIController();
