@@ -1,10 +1,7 @@
-import { Schema, model } from 'mongoose';
 import AbstractController from '../AbstractController';
-import mockingoose from 'mockingoose';
-import { connectDBForTesting, disconnectDBForTesting } from 'lib/connectDBForTesting';
 
-import mockModel from '../../../__mocks__/mockModel';
 import { Request, Response } from 'express';
+import mockModel from '../../../__mocks__/mockModel';
 
 // let mockModel: any = null;
 // let mockSchema: any = null;

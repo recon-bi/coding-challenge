@@ -18,6 +18,7 @@
 ### Other Changes
 
 - Removed default value in Date Range
+- Updated the main search (by date) function to include better logic
 
 ## 0.0.1
 

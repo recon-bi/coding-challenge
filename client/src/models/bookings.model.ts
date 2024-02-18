@@ -22,7 +22,7 @@ class BookingsModel extends AbstractModel {
 
   public getMyBookings = async (userId: string) => {
     try {
-      return await this.getWithQuerystring('my-bookings', { id: userId });
+      return await this.getWithQuerystring(`my-bookings/${userId}`, {});
     } catch (error) {
       handleError(error);
     }

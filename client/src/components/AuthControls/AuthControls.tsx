@@ -3,8 +3,8 @@ import MDBox from 'ui/MDBox';
 import logo from 'assets/logo.png';
 import Login from 'components/AuthControls/Login';
 import Logout from 'components/AuthControls/Logout';
-import ChangePassword from 'components/AuthControls//ChangePassword';
-import ForgotPassword from 'components/AuthControls//ForgotPassword';
+import ChangePassword from 'components/AuthControls/ChangePassword';
+import ForgotPassword from 'components/AuthControls/ForgotPassword';
 import PageLayout from 'layouts/PageLayout';
 import 'assets/styles/pageLayout.css';
 

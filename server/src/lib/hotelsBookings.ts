@@ -10,8 +10,10 @@ export async function excludeFromSearch(req) {
     if (startDate && endDate) {
       const timeSearch = {
         $or: [
-          { $and: [{ checkIn: { $lt: new Date(startDate) } }, { checkIn: { $lt: new Date(endDate) } }] },
-          { $and: [{ checkOut: { $gt: new Date(startDate) } }, { checkOut: { $gt: new Date(endDate) } }] },
+          { $and: [{ checkIn: { $lte: new Date(startDate) } }, { checkOut: { $gte: new Date(endDate) } }] }, // start and end are between
+          { $and: [{ checkIn: { $gte: new Date(startDate) } }, { checkOut: { $lte: new Date(endDate) } }] }, // start and end are around
+          { $and: [{ checkOut: { $gte: new Date(startDate) } }, { checkOut: { $lte: new Date(endDate) } }] }, // checkOut is between req dates
+          { $and: [{ checkIn: { $gte: new Date(startDate) } }, { checkIn: { $lte: new Date(endDate) } }] }, //  checkIn is between req dates
         ],
       };
       filters.push(timeSearch);

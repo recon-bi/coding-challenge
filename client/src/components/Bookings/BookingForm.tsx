@@ -33,8 +33,8 @@ function BookingForm({ showModal, selectedItem, selections, onClose }: Props) {
 
     const newBooking = {
       ...{
-        checkIn: selections.startDate,
-        checkOut: selections.endDate,
+        checkIn: selections.startDate || dayjs().format('YYYY-MM-DD'),
+        checkOut: selections.endDate || dayjs().add(1, 'days').format('YYYY-MM-DD'),
         duration,
         totalPrice: duration * selectedItem.price,
       },
@@ -61,7 +61,7 @@ function BookingForm({ showModal, selectedItem, selections, onClose }: Props) {
   }, [showModal]);
 
   return (
-    <CommonModal showModal={open} onModalClose={onClose} cssOverrides={{ width: 600 }}>
+    <CommonModal showModal={open} onModalClose={onClose} cssOverrides={{ width: 525 }}>
       <MDBox>
         <DataCard title="">
           <MDBox>

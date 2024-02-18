@@ -13,20 +13,18 @@ import MDBox from 'ui/MDBox';
 import MDTypography from 'ui/MDTypography';
 
 // Material Dashboard 2 PRO React TS examples components
-import SidenavCollapse from 'components/SideNav/SidenavCollapse';
-import SidenavList from 'components/SideNav/SidenavList';
-import SidenavItem from 'components/SideNav/SidenavItem';
+import SidenavCollapse from 'components/SideNav/SideNavCollapse';
+import SidenavList from 'components/SideNav/SideNavList';
+import SidenavItem from 'components/SideNav/SideNavItem';
 
 // Custom styles for the Sidenav
-import SidenavRoot from 'components/SideNav/SidenavRoot';
+import SidenavRoot from 'components/SideNav/SideNavRoot';
 import sidenavLogoLabel from 'components/SideNav/styles/sidenav';
 
 // Material Dashboard 2 PRO React context
 import { useMaterialUIController, setMiniSidenav, setTransparentSidenav, setWhiteSidenav } from 'context/ThemeContext';
 import { authContext } from 'context/AuthContext';
 import icon from '../../favicon-32x32.png';
-
-const APP_NAME = import.meta.env.VITE_APP_NAME;
 
 // import swIcon from 'assets/images/logos/southern-water/swIcon.png'
 // Declaring props types for Sidenav
