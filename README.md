@@ -20,7 +20,7 @@ Docker Desktop (to start the DB)
 
 There are 2 users now in the system. You will need to login with one or the other
 
-** USER | PASS **
+**USER** | **PASS**
 
 - User1 | 123
 - User2 | 123
