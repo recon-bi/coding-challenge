@@ -18,10 +18,12 @@ Docker Desktop (to start the DB)
 
 ## Mock User Support added
 
-There are 2 users now in the system
+There are 2 users now in the system. You will need to login with one or the other
 
-- User1 : 123
-- User2 : 123
+** USER | PASS **
+
+- User1 | 123
+- User2 | 123
 
 These users can be used to test bookings for each user are not visible to any other user
 
@@ -29,4 +31,4 @@ These users can be used to test bookings for each user are not visible to any ot
 
 Check out all changes since the last release here
 
-[An Internal Link](/CHANGELOG.md)
+[CHANGELOG.md](/CHANGELOG.md)
