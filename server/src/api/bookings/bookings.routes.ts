@@ -7,6 +7,7 @@ const controller = new Controller();
 router.get('/', controller.getAll);
 router.get('/paged-items', controller.getPagedItems);
 router.get('/paged-items-count', controller.getPagedItemCount);
-router.post('/', controller.create)
+router.get('/my-bookings/:id', controller.getMine);
+router.post('/', controller.create);
 
 module.exports = router;

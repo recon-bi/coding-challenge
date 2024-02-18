@@ -2,23 +2,28 @@ import DataTable from 'common/DataTable';
 import DashboardLayout from 'layouts/Dashboard';
 import DashboardNavbar from 'layouts/Navbar';
 import BookingsModel from 'models/bookings.model';
-import { useDispatch } from 'react-redux';
-import { userActions } from 'redux/actions';
 import columns from './bookings.columns';
+import React from 'react';
+import { authContext } from 'context/AuthContext';
+
+const modelInstance = BookingsModel.getInstance();
 
 function Bookings() {
-  const modelInstance = BookingsModel.getInstance();
-  const dispatch = useDispatch();
+  const [data, setData] = React.useState([]);
+  const { user } = React.useContext(authContext);
 
-  const handleRowClick = ({ original }: any) => {
-    // dispatch(loggersActions.viewItem({ viewItem }));
-    console.log(dispatch, userActions, original);
-  };
+  React.useEffect(() => {
+    const getData = async () => {
+      const data = await modelInstance.getMyBookings(user._id);
+      setData(data);
+    };
+    getData();
+  }, []);
 
   return (
     <DashboardLayout>
       <DashboardNavbar />
-      <DataTable columns={columns} modelInstance={modelInstance} onRowClick={handleRowClick}  />
+      <DataTable columns={columns} rows={data} manualFilters={false} manualPagination={false} />
     </DashboardLayout>
   );
 }

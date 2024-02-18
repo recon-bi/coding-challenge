@@ -1,5 +1,6 @@
 import { bookingActions } from 'redux/bookings.redux';
 import AbstractModel from './abstractModel';
+import handleError from 'src/errors';
 
 const modelName = 'bookings'; // Give the model a name. You could make it easy on yourself and call it the same name as the endpoint name ;)
 
@@ -17,6 +18,14 @@ class BookingsModel extends AbstractModel {
   static getInstance = (): BookingsModel => {
     if (!BookingsModel.instance) BookingsModel.instance = new BookingsModel();
     return this.instance;
+  };
+
+  public getMyBookings = async (userId: string) => {
+    try {
+      return await this.getWithQuerystring('my-bookings', { id: userId });
+    } catch (error) {
+      handleError(error);
+    }
   };
 }
 

@@ -27,7 +27,6 @@ function Hotels({ initialSearch = {} }: Props) {
   };
 
   React.useEffect(() => {
-    console.log(search);
     const getData = async () => {
       const data = await modelInstance.getSearchResults(search);
       setData(data);
