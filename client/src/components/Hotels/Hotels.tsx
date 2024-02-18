@@ -11,9 +11,13 @@ import columns from './hotels.columns';
 
 const modelInstance = HotelsModel.getInstance();
 
-function Hotels() {
+interface Props {
+  initialSearch?: any;
+}
+
+function Hotels({ initialSearch = {} }: Props) {
   const [data, setData] = React.useState([]);
-  const [search, setSearch] = React.useState({});
+  const [search, setSearch] = React.useState(initialSearch);
   const [showBookingForm, setShowBookingForm] = React.useState(false);
   const [selectedItem, setSelectedItem] = React.useState();
 
@@ -23,6 +27,7 @@ function Hotels() {
   };
 
   React.useEffect(() => {
+    console.log(search);
     const getData = async () => {
       const data = await modelInstance.getSearchResults(search);
       setData(data);
@@ -33,6 +38,7 @@ function Hotels() {
   return (
     <DashboardLayout>
       <DashboardNavbar />
+
       <MDBox mb={1} mt={1}>
         <DataCard title="Search for hotels">
           <MDBox mt={1}>
@@ -40,6 +46,7 @@ function Hotels() {
           </MDBox>
         </DataCard>
       </MDBox>
+
       <DataTable
         columns={columns}
         rows={data}
@@ -47,6 +54,7 @@ function Hotels() {
         manualFilters={false}
         manualPagination={false}
       />
+
       <BookingForm
         selectedItem={selectedItem}
         showModal={showBookingForm}

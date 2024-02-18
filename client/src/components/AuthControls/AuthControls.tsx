@@ -1,15 +1,16 @@
-import SnowLayout from 'layouts/Snow';
 import { Routes, Route } from 'react-router-dom';
 import MDBox from 'ui/MDBox';
-import logo from '../../logo.png';
+import logo from 'assets/logo.png';
 import Login from 'components/AuthControls/Login';
 import Logout from 'components/AuthControls/Logout';
 import ChangePassword from 'components/AuthControls//ChangePassword';
 import ForgotPassword from 'components/AuthControls//ForgotPassword';
+import PageLayout from 'layouts/PageLayout';
+import 'assets/styles/pageLayout.css';
 
 export default function AuthComponents() {
   return (
-    <SnowLayout>
+    <PageLayout>
       <div className="inner-header flex">
         <MDBox component="img" alt="Logo" src={logo} mt="-30%" width="500px" />
       </div>
@@ -20,6 +21,6 @@ export default function AuthComponents() {
         <Route path="/forgot-password" element={<ForgotPassword />} />
         <Route path="*" element={<Login />} />
       </Routes>
-    </SnowLayout>
+    </PageLayout>
   );
 }

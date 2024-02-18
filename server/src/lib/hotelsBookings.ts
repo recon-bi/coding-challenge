@@ -1,29 +1,25 @@
-import bookingsModel from "/api/bookings/bookings.model";
-import errorHandler from "/errorHandler";
+import bookingsModel from '/api/bookings/bookings.model';
+import errorHandler from '/errorHandler';
 
 export async function excludeFromSearch(req) {
   try {
     const { startDate, endDate } = req.query;
 
-    const filters: any = []
+    const filters: any = [];
 
     if (startDate && endDate) {
       const timeSearch = {
         $or: [
-          {$and: [{ checkIn: { $lte: new Date(startDate) } }]},
-          {$and: [{ checkOut: { $gte: new Date(endDate) } }]},
+          { $and: [{ checkIn: { $lt: new Date(startDate) } }, { checkIn: { $lt: new Date(endDate) } }] },
+          { $and: [{ checkOut: { $gt: new Date(startDate) } }, { checkOut: { $gt: new Date(endDate) } }] },
         ],
-      }
-      filters.push(timeSearch)
+      };
+      filters.push(timeSearch);
     }
 
-    console.log(JSON.stringify(filters))
-
-    if (filters.length > 0) return await bookingsModel.aggregate([
-      { $match: { $and: filters } }
-    ])
-    else return []
+    if (filters.length > 0) return await bookingsModel.aggregate([{ $match: { $and: filters } }]);
+    else return [];
   } catch (error) {
-    errorHandler(error)
+    errorHandler(error);
   }
 }

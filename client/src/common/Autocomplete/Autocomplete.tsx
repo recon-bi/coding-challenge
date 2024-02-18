@@ -1,3 +1,4 @@
+import { TextField } from '@mui/material';
 import Autocomplete, { AutocompleteChangeReason, AutocompleteInputChangeReason } from '@mui/material/Autocomplete';
 import { sortByName } from 'lib/utils/arrays';
 import React from 'react';
@@ -9,6 +10,7 @@ interface Props {
   onChange?: (value: NonNullable<string | AutocompleteOptionType>) => void;
   onSelected?: (selectedValue: AutocompleteOptionType | null) => void;
   onClear?: () => void;
+  testid?: string;
   label?: string;
   options?: AutocompleteOptionType[];
   selectedValue?: any;
@@ -28,6 +30,7 @@ function CommonAutocomplete({
   name,
   width,
   sortDesc,
+  testid,
   ...rest
 }: Props) {
   const [sortedOptions, setSortedOptions] = React.useState<AutocompleteOptionType[]>([]);
@@ -39,7 +42,6 @@ function CommonAutocomplete({
     reason: AutocompleteInputChangeReason,
   ) => {
     if (reason === 'clear') {
-      console.log('Cleared for a reason');
       setInputValue('');
     }
     setInputValue(newValue);
@@ -47,7 +49,6 @@ function CommonAutocomplete({
   };
 
   const handleChange = (e: any, newValue: AutocompleteOptionType | null, reason: AutocompleteChangeReason) => {
-    console.log(e, newValue, reason);
     if (onSelected) onSelected(newValue);
   };
 
@@ -69,7 +70,6 @@ function CommonAutocomplete({
   return (
     <MDBox spacing={2} sx={{ maxWidth: width }} bgColor="white" borderRadius="10px">
       <Autocomplete
-        data-testid="date-range-picker"
         id="common-autocomplete"
         options={sortedOptions}
         onInputChange={handleInputChange}
@@ -78,7 +78,7 @@ function CommonAutocomplete({
         groupBy={(option: any) => (option?.group ? option.group : null)}
         getOptionLabel={(option: any) => option.label}
         renderInput={(params) => (
-          <MDInput
+          <TextField
             {...params}
             label={label}
             InputProps={{
@@ -86,6 +86,7 @@ function CommonAutocomplete({
               type: 'search',
               sx: { backgroundColor: 'white', height: 45, maxWidth: width, lineHeight: 0, pt: -1 },
             }}
+            inputProps={{ ...params.inputProps, 'data-testid': testid }}
             name={name}
             // value={selectedValue}
           />

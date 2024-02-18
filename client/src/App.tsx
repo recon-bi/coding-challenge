@@ -17,7 +17,7 @@ import { Modal } from 'common/Modal';
 import MDButton from 'ui/MDButton'; // Import the history helper
 import MDBox from 'ui/MDBox';
 import Error403 from './Error403';
-import logo from './logo.png';
+import logo from 'assets/logo.png';
 
 export default function App() {
   const [controller, dispatch] = useMaterialUIController();
@@ -30,6 +30,7 @@ export default function App() {
 
   history.navigate = useNavigate();
   history.location = useLocation();
+
   // Open sidenav when mouse enter on mini sidenav
   const handleOnMouseEnter = () => {
     if (miniSidenav && !onMouseEnter) {
@@ -139,7 +140,6 @@ export default function App() {
       <Routes>
         <Route path="/auth/*" element={<AuthControls />} />
         {<Route path="/" element={<Dashboard />} />}
-        {getRoutes(routes)}
 
         {user && !user.ChallengeName ? (
           <>

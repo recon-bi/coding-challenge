@@ -8,12 +8,14 @@ const modelInstance = HotelsModel.getInstance();
 
 interface Props {
   onSelected: (key: string, value: string) => void;
+  initialState?: any[];
 }
 
-function CitySearch({ onSelected }: Props) {
-  const [options, setOptions] = React.useState([]);
+function CitySearch({ onSelected, initialState = [] }: Props) {
+  const [options, setOptions] = React.useState(initialState);
 
   const handleSelected = (selectedValue: AutocompleteOptionType | null) => {
+    console.log('HANDLE SELECTED');
     if (selectedValue) onSelected('city', selectedValue.label);
   };
 
@@ -26,10 +28,18 @@ function CitySearch({ onSelected }: Props) {
         handleError(error);
       }
     };
-
     getData();
   }, []);
-  return <CommonAutocomplete options={options} label="City" onSelected={handleSelected} />;
+
+  return (
+    <CommonAutocomplete
+      options={options}
+      label="City"
+      onSelected={handleSelected}
+      sx={{ minWidth: 175 }}
+      testid="citySearch_Autocomplete"
+    />
+  );
 }
 
 export default CitySearch;

@@ -40,23 +40,23 @@ function HotelSearch({ onSearch }: Props) {
   const handleSearch = () => onSearch(search);
 
   return (
-    <MDBox display="flex">
-      <MDBox width={400}>
+    <MDBox display="flex" flexWrap="wrap">
+      <MDBox width={400} mt={1} mr={1}>
         <DateRangeSearch onChange={handleDateRangeChange} />
       </MDBox>
-      <MDBox width={175} ml={1}>
+      <MDBox mr={1} mt={1}>
         <CitySearch onSelected={setSearchParams} />
       </MDBox>
-      <MDBox width={175} ml={1}>
+      <MDBox mr={1} mt={1}>
         <CountrySearch onSelected={setSearchParams} />
       </MDBox>
-      <MDBox width={100} ml={1}>
+      <MDBox maxWidth={100} mr={1} mt={1}>
         <MDInput label="Min £" width={50} type="number" name="priceMin" onChange={handleComponentChange} />
       </MDBox>
-      <MDBox width={100} ml={1}>
+      <MDBox maxWidth={100} mr={1} mt={1}>
         <MDInput label="Max £" width={50} type="number" name="priceMax" onChange={handleComponentChange} />
       </MDBox>
-      <MDBox ml={1} mt={0.2}>
+      <MDBox ml={1} mt={1}>
         <MDButton onClick={handleSearch} variant="contained" color="primary">
           Search
         </MDButton>

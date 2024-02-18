@@ -4,7 +4,7 @@ import userEvent from '@testing-library/user-event';
 // import { ReactNode } from 'react';
 import { unmountComponentAtNode } from 'react-dom';
 import { afterEach, beforeEach, describe, expect, it } from 'vitest';
-import DateRangeSearch from '../../HotelSearch/DateRangeSearch'; // Adjust the import path as necessary
+import DateRangeSearch from '../DateRangeSearch'; // Adjust the import path as necessary
 
 let container: any = null;
 

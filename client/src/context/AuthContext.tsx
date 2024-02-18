@@ -253,7 +253,6 @@ function AuthProvider({ children }: any) {
 
   React.useEffect(() => {
     const initializeUser = async () => {
-      console.log(userDetails);
       if (userDetails && (await validateToken())) {
         setUser(userDetails);
       }
