@@ -5,17 +5,19 @@ import dayjs from 'dayjs';
 import Swal from 'sweetalert2';
 
 interface Props {
+  id?: string;
   onChange: (newValues: any) => void;
   firstDate?: string;
   lastDate?: string;
 }
 
-function DateRangePicker({ onChange, firstDate, lastDate }: Props) {
+function DateRangePicker({ onChange, firstDate, lastDate, id }: Props) {
   const [values, setValues] = React.useState({});
 
   // const [sliderValue, setSliderValue] = React.useState<number[]>([0, 100]);
 
   const validate = (values: any) => {
+    if (Object.keys(values).some((v: string) => values[v] === null)) return true;
     const isValid = dayjs(values.startDate).isBefore(values.endDate);
     if (!isValid) {
       Swal.fire(
@@ -45,6 +47,7 @@ function DateRangePicker({ onChange, firstDate, lastDate }: Props) {
       <Box display="flex" justifyContent="space-between">
         <Box minWidth={150}>
           <CommonDatePicker
+            testid={`${id}_dateRangePickerStart`}
             label="Start Date"
             initialValue={firstDate}
             onChange={(newValue: any) => handleChange(newValue, 'startDate')}
@@ -52,6 +55,7 @@ function DateRangePicker({ onChange, firstDate, lastDate }: Props) {
         </Box>
         <Box ml={1} minWidth={150}>
           <CommonDatePicker
+            testid={`${id}_dateRangePickerEnd`}
             label="End Date"
             initialValue={lastDate}
             onChange={(newValue: any) => handleChange(newValue, 'endDate')}
@@ -63,8 +67,8 @@ function DateRangePicker({ onChange, firstDate, lastDate }: Props) {
 }
 
 DateRangePicker.defaultProps = {
-  firstDate: dayjs().add(-1, 'weeks').format('DD/MM/YYYY'),
-  lastDate: dayjs().format('DD/MM/YYYY'),
+  firstDate: null,
+  lastDate: null,
 };
 
 export default DateRangePicker;

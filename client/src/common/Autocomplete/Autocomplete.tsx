@@ -1,4 +1,4 @@
-import Autocomplete from '@mui/material/Autocomplete';
+import Autocomplete, { AutocompleteChangeReason, AutocompleteInputChangeReason } from '@mui/material/Autocomplete';
 import { sortByName } from 'lib/utils/arrays';
 import React from 'react';
 import { AutocompleteOptionType } from 'types/common';
@@ -7,7 +7,8 @@ import MDInput from 'ui/MDInput';
 
 interface Props {
   onChange?: (value: NonNullable<string | AutocompleteOptionType>) => void;
-  onSelected?: (selectedValue: AutocompleteOptionType) => void;
+  onSelected?: (selectedValue: AutocompleteOptionType | null) => void;
+  onClear?: () => void;
   label?: string;
   options?: AutocompleteOptionType[];
   selectedValue?: any;
@@ -20,6 +21,7 @@ interface Props {
 function CommonAutocomplete({
   onChange,
   onSelected,
+  onClear,
   label,
   options,
   selectedValue,
@@ -29,15 +31,20 @@ function CommonAutocomplete({
   ...rest
 }: Props) {
   const [sortedOptions, setSortedOptions] = React.useState<AutocompleteOptionType[]>([]);
-  const [inputValue, setInputValue] = React.useState('')
+  const [inputValue, setInputValue] = React.useState('');
 
-  const handleInputChange = (e: any, newValue: NonNullable<string | AutocompleteOptionType>) => {
-    e.target; // throwing away the value whilst keeping the transpiler quiet
+  const handleInputChange = (
+    e: any,
+    newValue: NonNullable<string | AutocompleteOptionType>,
+    reason: AutocompleteInputChangeReason,
+  ) => {
+    if (reason === 'clear') {
+      console.log('Cleared for a reason');
+    }
     if (onChange) onChange(newValue);
   };
 
-  const handleChange = (e: any, newValue: AutocompleteOptionType) => {
-    e.target; // throwing away the value whilst keeping the transpiler quiet
+  const handleChange = (e: any, newValue: AutocompleteOptionType | null, reason: AutocompleteChangeReason) => {
     if (onSelected) onSelected(newValue);
   };
 
@@ -57,7 +64,6 @@ function CommonAutocomplete({
       <Autocomplete
         data-testid="date-range-picker"
         id="common-autocomplete"
-        disableClearable
         options={sortedOptions}
         onInputChange={handleInputChange}
         inputValue={inputValue}
@@ -71,14 +77,7 @@ function CommonAutocomplete({
             InputProps={{
               ...params.InputProps,
               type: 'search',
-              sx: { backgroundColor: 'white', height: 45, maxWidth: width, lineHeight:0 },
-              // endAdornment: (
-              //   <MDBox mt={-1}>
-              //     <InputAdornment position="end">
-              //       <Icon>search</Icon>
-              //     </InputAdornment>
-              //   </MDBox>
-              // ),
+              sx: { backgroundColor: 'white', height: 45, maxWidth: width, lineHeight: 0 },
             }}
             name={name}
             value={selectedValue}

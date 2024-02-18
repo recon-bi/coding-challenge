@@ -45,6 +45,7 @@
     "@babel/preset-typescript": "^7.23.3",
     "@testing-library/jest-dom": "^6.2.0",
     "@testing-library/react": "^14.1.2",
+    "@testing-library/user-event": "^14.5.2",
     "@types/chroma-js": "^2.4.3",
     "@types/dropzone": "^5.7.8",
     "@types/jest": "^29.5.11",

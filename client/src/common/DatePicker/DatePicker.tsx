@@ -7,13 +7,15 @@ import TextField from '@mui/material/TextField';
 import 'dayjs/locale/en-gb';
 
 interface Props {
+  testid?: string;
   label: string;
   initialValue?: string;
   onChange: (value: string) => void;
+  [key: string]: any;
 }
 
-function CommonDatePicker({ label, onChange, initialValue }: Props) {
-  const [value, setValue] = React.useState<Dayjs | null>(dayjs());
+function CommonDatePicker({ testid, label, onChange, initialValue, ...rest }: Props) {
+  const [value, setValue] = React.useState<Dayjs | null>(null);
 
   const handleChange = (value: any) => {
     const newValue: any = dayjs(`${value.format('YYYY-MM-DD')}T00:00:00`);
@@ -31,18 +33,20 @@ function CommonDatePicker({ label, onChange, initialValue }: Props) {
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale="en-gb">
       <DatePicker
+        {...rest}
         label={label || 'Date'}
         views={['year', 'month', 'day']}
         value={value}
         onChange={handleChange}
-        renderInput={(params) => <TextField {...params} />}
+        renderInput={(params) => <TextField {...params} inputProps={{ ...params.inputProps, 'data-testid': testid }} />}
       />
     </LocalizationProvider>
   );
 }
 
 CommonDatePicker.defaultProps = {
-  initialValue: dayjs(),
+  initialValue: null,
+  testid: 'muiDatePicker',
 };
 
 export default CommonDatePicker;

@@ -167,9 +167,8 @@ export default function ChangePassword() {
                   id="oldPassword"
                   label="Old Password"
                   onChange={handleChange}
-                  sx={{ width: 425 }}
                   value={oldPassword}
-                  
+                  fullWidth
                 />
               </MDBox>
               <MDBox mb={2}>
@@ -180,8 +179,7 @@ export default function ChangePassword() {
                   label="New Password"
                   value={newPassword}
                   onChange={handleChange}
-                  sx={{ width: 425 }}
-                  
+                  fullWidth
                 />
               </MDBox>
               <MDBox mb={2}>
@@ -193,13 +191,12 @@ export default function ChangePassword() {
                   label="Confirm Password"
                   value={confirmPassword}
                   onChange={handleChange}
-                  sx={{ width: 425 }}
                   helperText="New Password must match Confirmed Password"
-                  
+                  fullWidth
                 />
               </MDBox>
               <MDBox mt={4} mb={1}>
-                <MDButton variant="gradient" color="info"  type="submit">
+                <MDButton variant="gradient" color="info" fullWidth type="submit">
                   change password
                 </MDButton>
               </MDBox>

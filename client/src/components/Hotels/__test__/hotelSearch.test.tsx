@@ -1,28 +1,66 @@
-import { describe, it, expect } from 'vitest';
-import { render, fireEvent, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
+import { act, render, screen, fireEvent } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
+// import { ReactNode } from 'react';
+import { unmountComponentAtNode } from 'react-dom';
+import { afterEach, beforeEach, describe, expect, it } from 'vitest';
 import HotelSearch from '../HotelSearch'; // Adjust the import path as necessary
 
-vitest.mock('src/ui/MDBox');
+let container: any = null;
+
+beforeEach(() => {
+  container = document.createElement('div');
+  document.body.appendChild(container);
+});
+
+afterEach(() => {
+  unmountComponentAtNode(container);
+  container.remove();
+  container = null;
+});
 
 describe('HotelSearch Component', () => {
   it('renders without crashing', () => {
     const onChangeMock = vi.fn();
-    render(<HotelSearch onChange={onChangeMock} />);
-    console.log(screen);
-    const startDate = screen.getAllByLabelText('Start Date');
-    console.log(startDate);
-    // Assuming your DateRangePicker uses a placeholder or text, adjust as necessary
-    // expect(findByTestId('hotel-search-daterangepicker')).toBeInTheDocument();
+
+    act(() => {
+      render(<HotelSearch onChange={onChangeMock} />, container);
+    });
+
+    expect(container).toBeTruthy();
   });
 
-  it('calls onChange prop when date range changes', async () => {
+  it('calls onChange prop with the correct params when start date changes', () => {
     const onChangeMock = vi.fn();
-    const { getByPlaceholderText } = render(<HotelSearch onChange={onChangeMock} />);
-    const dateInput = getByPlaceholderText('Start Date'); // Adjust based on your actual placeholders
 
-    await fireEvent.change(dateInput, { target: { value: '2022-01-01' } });
+    render(<HotelSearch onChange={onChangeMock} />, container);
 
-    // expect(onChangeMock).toHaveBeenCalled();
+    expect(onChangeMock).not.toHaveBeenCalled();
+
+    const startDateInput = screen.getByTestId('HotelSearch_dateRangePickerStart');
+    userEvent.type(startDateInput, '01/01/2020', { delay: 1 });
+    fireEvent.change(startDateInput, { target: { value: '01/01/2020' } });
+
+    expect(onChangeMock).toHaveBeenCalledWith({
+      startDate: '2020-01-01T00:00:00.000Z',
+      endDate: null,
+    });
+  });
+
+  it('calls onChange prop with the correct params when end date changes', () => {
+    const onChangeMock = vi.fn();
+
+    render(<HotelSearch onChange={onChangeMock} />, container);
+
+    expect(onChangeMock).not.toHaveBeenCalled();
+
+    const endDateInput = screen.getByTestId('HotelSearch_dateRangePickerEnd');
+    userEvent.type(endDateInput, '01/01/2020', { delay: 1 });
+    fireEvent.change(endDateInput, { target: { value: '01/01/2020' } });
+
+    expect(onChangeMock).toHaveBeenCalledWith({
+      endDate: '2020-01-01T00:00:00.000Z',
+      startDate: null,
+    });
   });
 });
