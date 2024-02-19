@@ -287,11 +287,10 @@ class AbstractModel {
     if (stateName === 'documentCount') this.updateReduxDocumentCount({ documentCount: results });
     else {
       const cache = this.addCacheItem(urlItem, results);
-      console.log(cache);
+
       const updateStateName = stateName ? { [stateName]: results } : {};
       const updateState = payload ? payload : {};
       const updateCache = cache && this.cacheItems > 0 ? cache : [];
-      console.log(updateCache);
 
       this.updateReduxState({
         ...updateStateName,

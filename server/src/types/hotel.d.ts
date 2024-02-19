@@ -1,6 +1,6 @@
-import { Geometry } from 'geojson'
+import { Geometry } from 'geojson';
 
-export interface IHotel {
+export interface IHotel extends Document {
   city: string;
   postalZip: string;
   country: string;

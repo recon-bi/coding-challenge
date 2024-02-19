@@ -3,7 +3,7 @@ import DashboardLayout from 'layouts/Dashboard';
 import DashboardNavbar from 'layouts/Navbar';
 import UsersModel from 'src/models/users.model';
 import React from 'react';
-import { UserType } from 'types/users';
+import { IUserType } from 'types/users';
 import MDBox from 'ui/MDBox';
 import MDButton from 'ui/MDButton';
 import UserDialog from './UserDialog';
@@ -11,7 +11,7 @@ import columns from './users.columns';
 
 function Users() {
   const [showCreateUser, setShowCreateUser] = React.useState<boolean>(false);
-  const [selected, setSelected] = React.useState<UserType | undefined | null>(null);
+  const [selected, setSelected] = React.useState<IUserType | undefined | null>(null);
   const modelInstance = UsersModel.getInstance();
 
   const handleClick = () => {

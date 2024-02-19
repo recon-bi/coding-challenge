@@ -1,5 +1,11 @@
 # Change Log
 
+## 0.0.3
+
+### Bug fix
+
+- Added strongly typed model to the AbstractController and extended Data Models from Document interface
+
 ## 0.0.2
 
 ### Features

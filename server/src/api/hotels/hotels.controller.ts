@@ -3,6 +3,7 @@ import AbstractController from '../../classes/AbstractController';
 import model from './hotels.model';
 import errorHandler from '/errorHandler';
 import { excludeFromSearch } from '../../lib/hotelsBookings';
+import { IHotel } from '/types/hotel';
 
 type SearchRequestType = {
   startDate: string;
@@ -13,7 +14,7 @@ type SearchRequestType = {
   priceMax: string;
 };
 
-class HotelController extends AbstractController {
+class HotelController extends AbstractController<IHotel> {
   constructor() {
     super(model);
   }

@@ -2,8 +2,9 @@ import { Request, Response } from 'express';
 import AbstractController from '../../classes/AbstractController';
 import model from './bookings.model';
 import errorHandler from '/errorHandler';
+import { IBooking } from '/types/bookings';
 
-class BookingController extends AbstractController {
+class BookingController extends AbstractController<IBooking> {
   constructor() {
     super(model);
   }

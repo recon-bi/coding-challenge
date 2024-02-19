@@ -2,16 +2,16 @@ import AbstractController from 'classes/AbstractController';
 import model from './users.model';
 import errorHandler from '/errorHandler';
 import { Request, Response } from 'express';
-import { UserType } from 'types/user';
+import { IUserType } from 'types/user';
 import roles from 'constants/roles';
 import bcrypt from 'bcrypt';
 
-class UserController extends AbstractController {
+class UserController extends AbstractController<IUserType> {
   constructor() {
     super(model);
   }
 
-  public createUser = async (req: Request<object, object, UserType>, res: Response) => {
+  public createUser = async (req: Request<object, object, IUserType>, res: Response) => {
     try {
       const password = await bcrypt.hash(req.body.password, 10);
       const newUser = { ...req.body, ...{ active: true, password } };
@@ -22,7 +22,7 @@ class UserController extends AbstractController {
     }
   };
 
-  public getUser = async (req: Request<object, object, UserType>, res: Response) => {
+  public getUser = async (req: Request<object, object, IUserType>, res: Response) => {
     try {
       const { username } = req.body;
       const result = await this.model.findOne({ username }, { salt: 0, password: 0 });
@@ -32,7 +32,7 @@ class UserController extends AbstractController {
     }
   };
 
-  public updateUser = async (req: Request<object, object, UserType>, res: Response) => {
+  public updateUser = async (req: Request<object, object, IUserType>, res: Response) => {
     try {
       const { username } = req.body;
       const result = await this.model.updateOne({ username }, { $set: req.body });
@@ -42,7 +42,7 @@ class UserController extends AbstractController {
     }
   };
 
-  public deleteUser = async (req: Request<UserType>, res: Response) => {
+  public deleteUser = async (req: Request<IUserType>, res: Response) => {
     try {
       const { username } = req.body;
       const result = await this.model.deleteOne({ username });

@@ -1,7 +1,7 @@
-import { IHotel } from "/types/hotel";
-import { IUserDocument } from "/types/user";
+import { IHotel } from '/types/hotel';
+import { IUserDocument } from '/types/user';
 
-export interface IBooking {
+export interface IBooking extends Document {
   hotel: IHotel;
   user: IUserDocument;
   checkIn: Date;

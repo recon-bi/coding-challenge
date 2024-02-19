@@ -1,7 +1,7 @@
 import { Schema, model } from 'mongoose';
-import { UserType, IUserDocument, IUserModel } from 'types/user';
+import { IUserType } from 'types/user';
 
-const UserSchema = new Schema<IUserDocument>({
+const UserSchema = new Schema<IUserType>({
   username: String,
   password: String,
   personName: String,
@@ -11,10 +11,6 @@ const UserSchema = new Schema<IUserDocument>({
   active: Boolean,
 });
 
-UserSchema.statics.buildUser = (args: UserType) => {
-  return new User(args);
-};
-
-const User = model<IUserDocument, IUserModel>('User', UserSchema);
+const User = model('User', UserSchema);
 
 export default User;

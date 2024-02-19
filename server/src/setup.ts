@@ -8,7 +8,8 @@ import { getRandomArbitrary } from './lib/numbers';
 import { hotels } from './mockData/hotels';
 import { users } from './mockData/users';
 import { IHotel } from './types/hotel';
-import { IUserDocument } from './types/user';
+import { IUserDocument } from './types/userDocument';
+import { IUserType } from './types/user';
 
 // this gets the mongodb client
 const getClient = async () => {
@@ -89,9 +90,8 @@ const transformBooking = async () => {
   }
 };
 
-const getPromiseRoot = async (db: any, key: string) => {
+const getPromiseRoot = async (collection: any, key: string) => {
   try {
-    const collection = db.collection(key);
     const docCount = await collection.countDocuments();
     if (docCount === 0) {
       const { data, transformer } = imports[key];
@@ -110,13 +110,16 @@ export const setup = async () => {
   try {
     const mongoClient = await getClient();
     const db = mongoClient.db(apiConfig.mongoConfig.dbName);
-    const promiseRoot = await Object.keys(imports).map(async (key: string) => await getPromiseRoot(db, key));
+    const promiseRoot = Object.keys(imports).map(async (key: string) => {
+      const collection = db.collection(key);
+      return await getPromiseRoot(collection, key);
+    });
     const status = await Promise.all(promiseRoot);
 
     if (status.every((x: any) => (x ? !x.error : true))) {
       const bookingDocCount = await db.collection('bookings').countDocuments();
       if (bookingDocCount === 0) {
-        const bookingPromises = await [...Array(12)].map(await transformBooking);
+        const bookingPromises = [...Array(12)].map(transformBooking);
         const docs = await Promise.all(bookingPromises);
         return await db.collection('bookings').insertMany(docs);
       }

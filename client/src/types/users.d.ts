@@ -1,4 +1,4 @@
-export type UserType = {
+export type IUserType = {
   username: string;
   password: string;
   roles: string[];

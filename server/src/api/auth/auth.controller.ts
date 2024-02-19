@@ -3,10 +3,12 @@ import usersModel from '../users/users.model';
 import bcrypt from 'bcrypt';
 import jwt, { TokenExpiredError } from 'jsonwebtoken';
 import errorHandler from '/errorHandler';
-import { IUserModel } from '/types/user';
+import { IUserType } from '/types/user';
+import { Model } from 'mongoose';
 
 class AuthController {
-  users: IUserModel;
+  users: Model<IUserType>;
+
   constructor() {
     this.users = usersModel;
   }

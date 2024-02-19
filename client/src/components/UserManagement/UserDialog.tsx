@@ -2,7 +2,7 @@ import DataCard from 'common/DataCard';
 import CommonModal from 'common/Modal';
 import React from 'react';
 import Swal from 'sweetalert2';
-import { UserType } from 'types/users';
+import { IUserType } from 'types/users';
 import MDBox from 'ui/MDBox';
 import MDInput from 'ui/MDInput';
 import Roles from './Roles';
@@ -16,7 +16,7 @@ import handleError from 'src/errors';
 interface Props {
   showModal: boolean;
   onClose: () => void;
-  selected?: UserType | undefined | null;
+  selected?: IUserType | undefined | null;
 }
 
 const initialUser = {
@@ -30,7 +30,7 @@ const initialUser = {
 
 function ManageUser({ showModal, onClose, selected }: Props) {
   const [open, setOpen] = React.useState<boolean>(false);
-  const [user, setUser] = React.useState<UserType>(selected || initialUser);
+  const [user, setUser] = React.useState<IUserType>(selected || initialUser);
   const title = `${selected ? 'Manage' : 'Create New'} User`;
   const modelInstance = UserModel.getInstance();
 

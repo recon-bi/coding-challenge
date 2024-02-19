@@ -1,16 +1,11 @@
 import { Request, Response } from 'express';
-// import { ObjectId } from 'mongodb';
 import errorHandler from '../errorHandler';
-import {
-  // FindPolygonItemsParams,
-  FindReqQuery,
-  FilterSortParams,
-  // QueryParametersReturnValue,
-} from 'types/query';
+import { FindReqQuery, FilterSortParams } from 'types/query';
 import handleError from '../errorHandler';
+import { Model, SortOrder } from 'mongoose';
 
-class AbstractController {
-  model;
+class AbstractController<T extends Document> {
+  model: Model<T>;
 
   constructor(model) {
     this.model = model;
@@ -133,7 +128,7 @@ class AbstractController {
     try {
       const { sortBy, sortDesc, pageSize, page, query } = req.query as unknown as FindReqQuery;
       const find = query ? JSON.parse(query as string) : {};
-      const sort = sortBy ? { [sortBy]: sortDesc ? -1 : 1 } : { $natural: -1 };
+      const sort: { [key: string]: SortOrder } = sortBy ? { [sortBy]: sortDesc ? -1 : 1 } : { $natural: -1 };
       const skip = parseInt(page) * parseInt(pageSize);
       const limit = parseInt(pageSize);
       const results = await this.model

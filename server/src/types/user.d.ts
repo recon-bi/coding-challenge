@@ -1,6 +1,4 @@
-import { Document, Model } from 'mongoose';
-
-export type UserType = {
+export interface IUserType extends Document {
   username: string;
   password: string;
   roles: {
@@ -11,10 +9,4 @@ export type UserType = {
   email: string;
   phone?: string;
   active?: boolean;
-};
-
-export interface IUserDocument extends UserType, Document {}
-
-export interface IUserModel extends Model<IUserDocument> {
-  buildUser(args: IUser): IUserDocument;
 }
