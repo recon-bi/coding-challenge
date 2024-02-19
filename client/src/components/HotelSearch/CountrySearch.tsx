@@ -22,7 +22,7 @@ function CountrySearch({ onSelected, initialState = [] }: Props) {
     const getData = async () => {
       try {
         const results = await modelInstance.getSearchOptions();
-        setOptions(results.countries.map((label: string) => ({ label })));
+        setOptions(results.map((label: string) => ({ label })));
       } catch (error) {
         handleError(error);
       }

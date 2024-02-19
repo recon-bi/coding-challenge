@@ -22,7 +22,7 @@ function CitySearch({ onSelected, initialState = [] }: Props) {
     const getData = async () => {
       try {
         const results = await modelInstance.getSearchOptions();
-        setOptions(results.cities.map((label: string) => ({ label })));
+        setOptions(results.map((label: string) => ({ label })));
       } catch (error) {
         handleError(error);
       }

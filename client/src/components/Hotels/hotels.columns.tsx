@@ -9,12 +9,12 @@ const columns = [
       const hotelImageIndex = index % 15;
       const hotelImage = `/images/hotel_pics/hotel${hotelImageIndex}.webp`;
       return (
-        <MDBox display="flex">
+        <MDBox display="flex" flexWrap="wrap">
           <MDBox overflow="hidden" borderRadius="10px" height={100}>
             <img src={hotelImage} alt={`Hotel Image ${hotelImageIndex}`} height={100} width={100} />
           </MDBox>
 
-          <MDBox ml={2} width={250}>
+          <MDBox ml={2} minWidth={250}>
             <MDTypography variant="h5">{original.name}</MDTypography>
             <MDTypography variant="h6">{original.country}</MDTypography>
             <MDTypography variant="h6">{original.city}</MDTypography>

@@ -20,9 +20,17 @@ class HotelController extends AbstractController {
 
   public getSearchOptions = async (req: Request, res: Response) => {
     try {
-      const cities = await this.model.distinct('city');
-      const countries = await this.model.distinct('country');
-      return res.status(200).json({ cities, countries });
+      const response = await this.model.distinct('country');
+      return res.status(200).json(response);
+    } catch (error) {
+      errorHandler(error, res);
+    }
+  };
+
+  public getCities = async (req: Request, res: Response) => {
+    try {
+      const response = await this.model.distinct('city');
+      return res.status(200).json(response);
     } catch (error) {
       errorHandler(error, res);
     }

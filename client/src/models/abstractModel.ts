@@ -23,7 +23,6 @@
  *      }
  *  }
  *
- *
  * @Sockets - If you want the abstract model to wire up sockets for you, you must override the following parameters in your class
  * -  @param useSockets - Determines whether or not sockets will be used (default: true | yes)
  * -  @param socketCollectionName - Set this to the name of the collection that comes in from the MongoDb change stream
@@ -129,13 +128,11 @@ class AbstractModel {
 
   // This registers a socket based on configuration settings provided
   private registerSockets = (channel: any = this.modelName) => {
-    console.log('socket registered:', this.modelName);
     this.singleSocket.registerSocketChannel(channel, this.handleSocketResponse);
   };
 
   // This is the main socket handler and guard function for socket handlers
   private handleSocketResponse = (response: any) => {
-    console.log('socket response:', response);
     if (this.overrideSocketResponse !== undefined && this.overrideSocketResponse !== null)
       return this.overrideSocketResponse(response);
     try {
@@ -235,6 +232,7 @@ class AbstractModel {
 
   private findCacheItem = (urlItem: string) => {
     const cache = this.getCache();
+    console.log(this.cache);
     return cache.find((x: CachedItemType) => x.urlItem === urlItem);
   };
 
@@ -269,6 +267,12 @@ class AbstractModel {
     payload?: DataTableState,
     refresh?: boolean,
   ) => {
+    console.log({
+      urlItem,
+      stateName,
+      payload,
+      refresh,
+    });
     let results = [];
     if (this.cacheItems > 0 && !refresh) {
       const cachedItem = this.findCacheItem(urlItem);
@@ -283,9 +287,12 @@ class AbstractModel {
     if (stateName === 'documentCount') this.updateReduxDocumentCount({ documentCount: results });
     else {
       const cache = this.addCacheItem(urlItem, results);
+      console.log(cache);
       const updateStateName = stateName ? { [stateName]: results } : {};
       const updateState = payload ? payload : {};
       const updateCache = cache && this.cacheItems > 0 ? cache : [];
+      console.log(updateCache);
+
       this.updateReduxState({
         ...updateStateName,
         ...updateState,
@@ -391,6 +398,8 @@ class AbstractModel {
     try {
       const queryString = this.encodeQueryString(payload);
       const reqUrl = `${this.defaultApiRoute}/${endpoint}?${queryString.toString()}`;
+      const test = await this.getAvailableCachedData(reqUrl);
+      console.log(test);
       const response = await useFetch(reqUrl);
       return await response;
     } catch (er) {

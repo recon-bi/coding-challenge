@@ -22,8 +22,8 @@ There are 2 users now in the system. You will need to login with one or the othe
 
 **USER** | **PASS**
 
-- User1 | 123
-- User2 | 123
+- User1 | 12345
+- User2 | 12345
 
 These users can be used to test bookings for each user are not visible to any other user
 
