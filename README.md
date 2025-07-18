@@ -65,6 +65,7 @@ And of course there is the abstractModel which allows to wire up a data layer wi
 Redux has the constants in the /redux/constants folder that contain the most standard state props and reducer functions that work hand in hand with the abtractModel 
 
 ....
+
 ..
 
-This might seem like a lot to take in when reading, but go ahead and take a look at the /api/example in the server and the /models/example and /redux/example for a demonstration on how easy it is to hook up a data exchange between db and server
+This might seem like a lot to take in when reading, but go ahead and take a look at the /api/example in the server and the /models/example and /redux/example for a demonstration on how easy it is to hook up a data exchange between db and client via the API
