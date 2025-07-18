@@ -49,7 +49,7 @@ Also in the /api folder are two reigster files where you would register what rou
 
 The server also contains some very important classes to handle db sessions, socket, redis (if you like) and one other little gem (of it's time I mean - its super dated now but...)
 
-- AbstractController.ts - uif you just create a controller and extend this little puppy you get full crud, paged, filtered, fully queryable endpoints ootb. That means any code in the controller is stuff that doesn't fit the standard getAll() getById() create() update() delete() patterns (for total customization) - This massively reduces repeat code.
+- AbstractController.ts - if you just create a controller and extend this little puppy you get full crud, paged, filtered, fully queryable endpoints ootb. That means any code in the controller is stuff that doesn't fit the standard getAll() getById() create() update() delete() patterns (for total customization) - This massively reduces repeat code.
 
 
 # The Client
@@ -74,7 +74,9 @@ This might seem like a lot to take in when reading, but go ahead and take a look
 
 If you take a look at /client/src/common/DataTable/DataTable.tsx, it is deisgned to work with any data but optionally you can feed it a model and a redux store and it will take care of all CRUD, filtering, sorting and paging ootb. (handlers for enpoints are found in the server's AbstractController, but you must create the default routes in the API [ GET /, /:id, /paged-data, /paged-data-count | PUT /:id | POST / ]
 
-```tsx
+Then all you gotta do is either this...
+
+```tsx usage
 import React from 'react';
 import DataTable from '@/common/DataTable'; // adjust path as needed
 
@@ -110,7 +112,7 @@ const ExampleTable: React.FC = () => {
 export default ExampleTable;
 ```
 
-Or if you are using the MVVM architecture with a model and redux store, use this implemtation for full CRUD, filtering, sorting and pagination
+Or if you are using the MVVM architecture with a model and redux store, and want automatic full CRUD, filtering, sorting and pagination, then these will be the droids you're looking for:
 
 ```tsx
 import React from 'react';
