@@ -69,3 +69,75 @@ Redux has the constants in the /redux/constants folder that contain the most sta
 ..
 
 This might seem like a lot to take in when reading, but go ahead and take a look at the /api/example in the server and the /models/example and /redux/example for a demonstration on how easy it is to hook up a data exchange between db and client via the API
+
+## But wait! here's the really cool thing
+
+If you take a look at /client/src/common/DataTable/DataTable.tsx, it is deisgned to work with any data but optionally you can feed it a model and a redux store and it will take care of all CRUD, filtering, sorting and paging ootb. (handlers for enpoints are found in the server's AbstractController, but you must create the default routes in the API [ GET /, /:id, /paged-data, /paged-data-count | PUT /:id | POST / ]
+
+```tsx
+import React from 'react';
+import DataTable from '@/common/DataTable'; // adjust path as needed
+
+const ExampleTable: React.FC = () => {
+  const columns = [
+    { Header: 'Name', accessor: 'name' },
+    { Header: 'Age', accessor: 'age' },
+    { Header: 'Email', accessor: 'email' },
+  ];
+
+  const rows = [
+    { name: 'Alice', age: 30, email: 'alice@example.com' },
+    { name: 'Bob', age: 25, email: 'bob@example.com' },
+    { name: 'Charlie', age: 35, email: 'charlie@example.com' },
+  ];
+
+  return (
+    <div className="p-4">
+      <DataTable
+        columns={columns}
+        rows={rows}
+        rowCount={rows.length}
+        useRedux={false}
+        pagerVisibility="minimal"
+        manualFilters={false}
+        manualPagination={false}
+        onRowClick={(row) => console.log('Row clicked:', row)}
+      />
+    </div>
+  );
+};
+
+export default ExampleTable;
+```
+
+Or if you are using the MVVM architecture with a model and redux store, use this implemtation for full CRUD, filtering, sorting and pagination
+
+```tsx
+import React from 'react';
+import DataTable from '@/common/DataTable'; // adjust path as needed
+import ExampleModel from '@/models/example.model';
+
+const ExampleTable: React.FC = () => {
+  const [filtering, setFiltering] = React.useState<any[]>(filters || []);
+  const modelInstance = ExampleModel.getInstance()
+  const columns = [
+    { Header: 'Name', accessor: 'name' },
+    { Header: 'Age', accessor: 'age' },
+    { Header: 'Email', accessor: 'email' },
+  ];
+
+  return (
+    <div className="p-4">
+      <DataTable
+        columns={columns}
+        modelInstance={modelInstance}
+        pagerVisibility="minimal"
+        initialFilters={filtering}
+        onRowClick={handleRowClick}
+      />
+    </div>
+  );
+};
+
+export default ExampleTable;
+```
