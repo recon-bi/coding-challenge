@@ -1,28 +1,34 @@
 import AbstractController from '../AbstractController';
-
-import { Request, Response } from 'express';
 import mockModel from '../../../__mocks__/mockModel';
+import { Request } from 'express';
 
 // let mockModel: any = null;
 // let mockSchema: any = null;
 
-const req: Request = jest.fn();
-const res: Response = jest.fn();
+type mockBodyType = {
+  name: string;
+  num: number;
+  obj: {
+    prop: string;
+  };
+};
 
-// beforeEach(() => {
-//   mockSchema = new Schema({
-//     testString: String,
-//     testNumber: Number,
-//   });
+const req: Request<object, object, mockBodyType, object> = {
+  body: {
+    name: 'Test',
+    num: 0,
+    obj: {
+      prop: 'obj prop',
+    },
+  },
+};
 
-//   mockModel = model('mockModel', mockSchema);
-//   // mockingoose(mockModel).toReturn([{ testName: 'Name ' }]);
-// });
-
-// afterEach(() => {
-//   mockSchema = null;
-//   mockModel = null;
-// });
+const res = () => {
+  return {
+    status: 201,
+    json: jest.fn(),
+  };
+};
 
 describe('AbstractController', () => {
   it('should instantiate with a this.model passed in constructor', () => {

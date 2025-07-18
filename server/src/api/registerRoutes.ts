@@ -1,4 +1,4 @@
-const endpoints = ['auth', 'users', 'bookings', 'hotels'];
+const endpoints = ['auth', 'users', 'bookings', 'hotels', 'example'];
 
 export default async function (app) {
   for (const item of endpoints) {
