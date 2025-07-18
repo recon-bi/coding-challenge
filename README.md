@@ -27,8 +27,21 @@ There are 2 users now in the system. You will need to login with one or the othe
 
 These users can be used to test bookings for each user are not visible to any other user
 
-## Changes since the last release
+## Under the hood
 
-Check out all changes since the last release here
+### The Server
 
-[CHANGELOG.md](/CHANGELOG.md)
+The server is a standard node/express created with nx. So it's pretty bare bones out of the box. However, the structure of the code, albeit bespoke, is quite simple
+
+/src
+- /api - The api folder contains a list of folders as they appear as end points. (so, /src/api/auth would translate into https://myserver:8080/auth)
+- /api/exmaple/example.controller.ts - contains the logic for the end point. 
+- /api/exmaple/example.model.ts - this is the Mongoose model (since mongo and mongoose were used in this project)
+- /api/exmaple/example.routes.ts - this contains the actual express routes and point to the controller function. (in x.controller.ts)
+
+Also in the api folder are two reigster files where you would register what routes you want active (using the same naming convention ofc)
+- registerRoutes.ts - just add your endpoint name, which should also be the name of the folder and presto! you're live
+- registerSockets.ts - and if you want a socket channel for that endpoint's model, just import it here and add it to the array (sockets ready)
+
+The server also contains some very important classes to handle db sessions, socket, redis (if you like) and one other little gem (of it's time I mean - its super dated now but...)
+- /src/classes/AbstractController.ts - using the pattern above if you just create a controller and extend this little puppy you get full crud, paged, filtered, fully queryable endpoint ootb. That means any code in the controller is stuff that doesn't fit the standard getAll() getById() create() update() delete() patterns (for total customization) 
