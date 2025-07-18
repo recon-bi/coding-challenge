@@ -49,4 +49,22 @@ Also in the /api folder are two reigster files where you would register what rou
 
 The server also contains some very important classes to handle db sessions, socket, redis (if you like) and one other little gem (of it's time I mean - its super dated now but...)
 
-- /src/classes/AbstractController.ts - using the pattern above if you just create a controller and extend this little puppy you get full crud, paged, filtered, fully queryable endpoint ootb. That means any code in the controller is stuff that doesn't fit the standard getAll() getById() create() update() delete() patterns (for total customization)
+- AbstractController.ts - uif you just create a controller and extend this little puppy you get full crud, paged, filtered, fully queryable endpoints ootb. That means any code in the controller is stuff that doesn't fit the standard getAll() getById() create() update() delete() patterns (for total customization) - This massively reduces repeat code.
+
+
+# The Client
+
+The client is a react/redux/vite creation that uses a MVVM pattern. By that, if you look at the way the api above is structured, your data layer on the front end works pretty much the same way
+
+/src
+- /model - In here you will find models for each of the end points. These act as your data fetchers, getters and putters to keep that logic separate
+- /redux - this is where you can declare a redux store. It uses the model to fetch data when components require it and also listens to socket requests depending on model config
+
+And of course there is the abstractModel which allows to wire up a data layer with very little code
+
+Redux has the constants in the /redux/constants folder that contain the most standard state props and reducer functions that work hand in hand with the abtractModel 
+
+....
+..
+
+This might seem like a lot to take in when reading, but go ahead and take a look at the /api/example in the server and the /models/example and /redux/example for a demonstration on how easy it is to hook up a data exchange between db and server
