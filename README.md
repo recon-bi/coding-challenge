@@ -43,7 +43,7 @@ The server is a standard node/express created with nx. So it's pretty bare bones
 Also in the /api folder are two reigster files where you would register what routes you want active (using the same naming convention ofc)
 
 - registerRoutes.ts - just add your endpoint name, which should also be the name of the folder and presto! you're live
-- registerSockets.ts - and if you want a socket channel for that endpoint's model, just import it here and add it to the array (sockets ready)
+- registerSockets.ts - and if you want a socket channel for that endpoint's model, just import it here and add it to the array (sockets ready) - It works based on mongo's ChangeStreams which fire regardless of where the source of the change was.
 
 #### /src/classes
 
